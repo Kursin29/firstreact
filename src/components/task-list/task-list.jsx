@@ -1,17 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Task from '../task/task';
-import App from '../app/app';
 
 import '../task-list/task-list.css'
 
-const TaskList = ({ tasks }) => {
-  return (
-    <ul className="todo-list">
-      {tasks && tasks.map((task) => (
-        <Task key={task.id} {...task} />
-      ))}
-    </ul>
-  );
-};
+export default class TaskList extends Component {
 
-export default TaskList;
+  render() {
+    const { tasks } = this.props;
+
+    const element = tasks.map((item) => {
+      const { id, ...itemProps } = this.props
+
+      return (
+        <li key={item.id}>
+          <Task  {...itemProps} />
+        </li>)
+    })
+
+
+    return (
+      <ul className="todo-list">
+        {element}
+      </ul>
+    );
+  }
+}

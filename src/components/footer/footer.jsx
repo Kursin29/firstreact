@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 import TasksFilter from '../tasks-filter/tasks-filter';
 
 import '../footer/footer.css'
 
-const Footer = ({ itemCount }) => {
-  return (
-    <footer className="footer">
-      <span className="todo-count">{itemCount} items left</span>
-      <TasksFilter />
-      <button className="clear-completed">Clear completed</button>
-    </footer>
-  );
-};
+export default class Footer extends Component {
 
-export default Footer;
+  render() {
+    const { itemCount } = this.props;
+
+    return (
+      <footer className="footer">
+        <span className="todo-count">{itemCount} items left</span>
+        <TasksFilter />
+        <button className="clear-completed">Clear completed</button>
+      </footer>
+    );
+  }
+}

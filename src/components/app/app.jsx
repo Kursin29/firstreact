@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import NewTaskForm from '../new-task-form/new-task-form';
 import TaskList from '../task-list/task-list';
 import Footer from '../footer/footer';
 import Task from '../task/task';
 import TasksFilter from '../tasks-filter/tasks-filter';
 
-import './app.jsx'
+export default class App extends Component {
 
-const App = () => {
-  const tasks = [
+  todoData = [
     {
       id: 1,
       description: 'Completed task',
@@ -32,22 +31,24 @@ const App = () => {
     }
   ];
 
-  return (
-    <div className="todoapp">
-      <header className="header">
-        <h1>todos</h1>
-        <NewTaskForm />
-      </header>
-      <section className="main">
-        <TaskList>
-          <Task />
-        </TaskList>
-      </section>
-      <Footer>
-        <TasksFilter />
-      </Footer>
-    </div>
-  );
-};
+  render() {
+    const { todoData } = this.props;
 
-export default App;
+    return (
+      <div className="todoapp">
+        <header className="header">
+          <h1>todos</h1>
+          <NewTaskForm />
+        </header>
+        <section className="main">
+          <TaskList tasks={todoData} />
+
+
+        </section>
+        <Footer>
+          <TasksFilter />
+        </Footer>
+      </div>
+    );
+  }
+}
