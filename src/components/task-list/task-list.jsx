@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Task from '../task/task';
 
+
 import '../task-list/task-list.css'
 
 export default class TaskList extends Component {
@@ -9,12 +10,8 @@ export default class TaskList extends Component {
     const { tasks } = this.props;
 
     const element = tasks.map((item) => {
-      const { id, ...itemProps } = this.props
-
-      return (
-        <li key={item.id}>
-          <Task  {...itemProps} />
-        </li>)
+      const { id, ...itemProps } = item
+      return <Task key={item.id} {...itemProps} />
     })
 
 

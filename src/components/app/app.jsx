@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import NewTaskForm from '../new-task-form/new-task-form';
 import TaskList from '../task-list/task-list';
 import Footer from '../footer/footer';
-import Task from '../task/task';
 import TasksFilter from '../tasks-filter/tasks-filter';
+
 
 export default class App extends Component {
 
@@ -32,7 +32,7 @@ export default class App extends Component {
   ];
 
   render() {
-    const { todoData } = this.props;
+    const { todoData } = this;
 
     return (
       <div className="todoapp">
