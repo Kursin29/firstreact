@@ -4,13 +4,18 @@ import '../task/task.css';
 
 export default class Task extends Component {
   render() {
-    const { description, created, isCompleted, isEditing } = this.props;
+    const { description, created, isCompleted, isEditing, onToggleTaskCompletion } = this.props;
 
     return (
       <li className={isCompleted ? 'completed' : isEditing ? 'editing' : ''}>
         <div className="view">
-          <input className="toggle" type="checkbox" />
-          <label onClick={() => { console.log('нажал') }}>
+          <input
+            className="toggle done"
+            type="checkbox"
+            checked={isCompleted}
+            onChange={onToggleTaskCompletion}
+          />
+          <label>
             <span className="description">{description}</span>
             <span className="created">{created}</span>
           </label>
