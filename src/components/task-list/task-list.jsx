@@ -5,7 +5,7 @@ import '../task-list/task-list.css';
 
 export default class TaskList extends Component {
   render() {
-    const { tasks, onToggleTaskCompletion } = this.props;
+    const { tasks, onToggleTaskCompletion, onDeleteTask, onEditTask } = this.props;
 
     const element = tasks.map((item) => {
       const { id, ...itemProps } = item;
@@ -14,6 +14,8 @@ export default class TaskList extends Component {
           key={item.id}
           {...itemProps}
           onToggleTaskCompletion={() => onToggleTaskCompletion(id)}
+          onDeleteTask={() => onDeleteTask(id)}
+          onEditTask={onEditTask}
         />
       );
     });
