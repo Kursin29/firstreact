@@ -114,7 +114,7 @@ export default class App extends Component {
             onDeleteTask={this.onDeleteTask}
             onEditTask={this.onEditTask} />
         </section>
-        <Footer itemCount={filteredTasks.length}
+        <Footer itemCount={todoData.filter(task => !task.isCompleted).length}
           onFilterChange={this.setFilter}
           activeFilter={filter}
           deleteCompletedTasks={this.deleteCompletedTasks}
