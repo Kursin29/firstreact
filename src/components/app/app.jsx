@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import NewTaskForm from '../new-task-form/new-task-form';
 import TaskList from '../task-list/task-list';
 import Footer from '../footer/footer';
-import TasksFilter from '../tasks-filter/tasks-filter';
 import { v4 as uuidv4 } from 'uuid';
 
 export default class App extends Component {
@@ -30,6 +29,20 @@ export default class App extends Component {
         isEditing: false,
       },
     ],
+    filter: 'All'
+  };
+
+
+  setFilter = (filter) => {
+    this.setState({ filter });
+  };
+
+  deleteCompletedTasks = () => {
+    this.setState(({ todoData }) => {
+      return {
+        todoData: todoData.filter((task) => !task.isCompleted),
+      };
+    });
   };
 
   onEditTask = (id, editedDescription) => {
@@ -63,7 +76,6 @@ export default class App extends Component {
   };
 
   onTaskAdded = (description) => {
-    const { todoData } = this.state;
 
     const newTask = {
       id: uuidv4(), // Используем uuid для генерации уникального идентификатора
@@ -78,7 +90,15 @@ export default class App extends Component {
   };
 
   render() {
-    const { todoData } = this.state;
+    const { todoData, filter } = this.state;
+
+    let filteredTasks = todoData;
+    if (filter === 'active') {
+      filteredTasks = todoData.filter((task) => !task.isCompleted);
+    } else if (filter === 'completed') {
+      filteredTasks = todoData.filter((task) => task.isCompleted);
+    }
+
 
     return (
       <div className="todoapp">
@@ -89,14 +109,16 @@ export default class App extends Component {
         </header>
         <section className="main">
           <TaskList
-            tasks={todoData}
+            tasks={filteredTasks}
             onToggleTaskCompletion={this.onToggleTaskCompletion}
             onDeleteTask={this.onDeleteTask}
             onEditTask={this.onEditTask} />
         </section>
-        <Footer>
-          <TasksFilter />
-        </Footer>
+        <Footer itemCount={filteredTasks.length}
+          onFilterChange={this.setFilter}
+          activeFilter={filter}
+          deleteCompletedTasks={this.deleteCompletedTasks}
+        />
       </div>
     );
   }
