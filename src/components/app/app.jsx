@@ -3,7 +3,6 @@ import NewTaskForm from '../new-task-form/new-task-form';
 import TaskList from '../task-list/task-list';
 import Footer from '../footer/footer';
 import { v4 as uuidv4 } from 'uuid';
-import { formatDistanceToNow } from 'date-fns';
 
 export default class App extends Component {
   state = {
