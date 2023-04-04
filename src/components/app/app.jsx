@@ -49,7 +49,7 @@ export default class App extends Component {
     this.setState(({ todoData }) => {
       const index = todoData.findIndex((task) => task.id === id);
       const oldTask = todoData[index];
-      const newTask = { ...oldTask, description: editedDescription };
+      const newTask = { ...oldTask, description: editedDescription, created: new Date() };
 
       return {
         todoData: [

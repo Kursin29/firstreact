@@ -25,7 +25,7 @@ export default class Task extends Component {
 
   onKeyPress = (e) => {
     if (e.key === 'Enter') {
-      this.props.onEditTask(this.props.id, e.target.value);
+      this.props.onEditTask(this.props.id, this.state.editedDescription);
       this.setState({ isEditing: false });
     }
   };
