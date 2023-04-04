@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../task/task.css';
+import { formatDistanceToNow } from 'date-fns';
 
 export default class Task extends Component {
   state = {
@@ -39,6 +40,8 @@ export default class Task extends Component {
     const { description, created, id, onDeleteTask } = this.props;
     const { isCompleted, isEditing, editedDescription } = this.state;
 
+    const timeAgo = formatDistanceToNow(created, { addSuffix: true });
+
     return (
       <li className={isCompleted ? 'completed' : isEditing ? 'editing' : ''}>
         <div className="view">
@@ -50,7 +53,7 @@ export default class Task extends Component {
           />
           <label>
             <span className="description">{description}</span>
-            <span className="created">{created}</span>
+            <span className="created">{timeAgo}</span>
           </label>
           <button className="icon icon-edit" onClick={this.onEditButtonClick}></button>
           <button className="icon icon-destroy" onClick={() => onDeleteTask(id)}></button>

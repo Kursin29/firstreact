@@ -3,6 +3,7 @@ import NewTaskForm from '../new-task-form/new-task-form';
 import TaskList from '../task-list/task-list';
 import Footer from '../footer/footer';
 import { v4 as uuidv4 } from 'uuid';
+import { formatDistanceToNow } from 'date-fns';
 
 export default class App extends Component {
   state = {
@@ -10,21 +11,21 @@ export default class App extends Component {
       {
         id: 1,
         description: 'Completed task',
-        created: 'created 17 seconds ago',
+        created: new Date(),
         isCompleted: true,
         isEditing: false,
       },
       {
         id: 2,
         description: 'Editing task',
-        created: 'created 5 minutes ago',
+        created: new Date(),
         isCompleted: false,
         isEditing: true,
       },
       {
         id: 3,
         description: 'Active task',
-        created: 'created 5 minutes ago',
+        created: new Date(),
         isCompleted: false,
         isEditing: false,
       },
@@ -81,7 +82,7 @@ export default class App extends Component {
       id: uuidv4(), // Используем uuid для генерации уникального идентификатора
       description: description,
       isCompleted: false,
-      created: new Date().toLocaleString(),
+      created: new Date()
     };
 
     this.setState(({ todoData }) => ({
