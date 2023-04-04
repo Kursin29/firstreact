@@ -40,7 +40,7 @@ export default class Task extends Component {
     const { description, created, id, onDeleteTask } = this.props;
     const { isCompleted, isEditing, editedDescription } = this.state;
 
-    const timeAgo = formatDistanceToNow(created, { addSuffix: true });
+    const timeAgo = created ? formatDistanceToNow(created, { addSuffix: true }) : '';
 
     return (
       <li className={isCompleted ? 'completed' : isEditing ? 'editing' : ''}>
