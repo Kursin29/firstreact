@@ -3,6 +3,7 @@ import NewTaskForm from '../new-task-form/new-task-form';
 import TaskList from '../task-list/task-list';
 import Footer from '../footer/footer';
 import { v4 as uuidv4 } from 'uuid';
+import PropTypes from 'prop-types';
 
 export default class App extends Component {
   state = {
@@ -123,3 +124,17 @@ export default class App extends Component {
     );
   }
 }
+App.propTypes = {
+  tasks: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      completed: PropTypes.bool.isRequired,
+      created: PropTypes.instanceOf(Date).isRequired,
+    })
+  ).isRequired,
+  onToggleTaskCompletion: PropTypes.func.isRequired,
+  onDeleteTask: PropTypes.func.isRequired,
+  onEditTask: PropTypes.func.isRequired,
+  onTaskAdded: PropTypes.func.isRequired,
+};
