@@ -125,7 +125,7 @@ export default class App extends Component {
   }
 }
 App.propTypes = {
-  tasks: PropTypes.arrayOf(
+  todoData: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
